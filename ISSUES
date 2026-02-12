@@ -1,0 +1,10 @@
+* Getting:
+```Traceback (most recent call last):
+  File "/home/r/python/myownbfinterpreter/./bf.py", line 65, in <module>
+    stack.pop()
+    ~~~~~~~~~^^
+IndexError: pop from empty list```
+
+when running:
+```[]++++++++++[>>+>+>++++++[<<+<+++>>>-]<<<<-]
+"A*$";?@![#>>+<<]>[>>]<<<<[>++<[-]]>.>.```
