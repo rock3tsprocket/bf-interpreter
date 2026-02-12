@@ -11,6 +11,7 @@ try:
 except IndexError:
     print("Enter code here:")
     code = stdin.read()
+    print("")
 
 def segfaulthandler(dp, f, cellamount):
     if dp < 0 or dp > 29999:
@@ -29,7 +30,16 @@ def segfaulthandler(dp, f, cellamount):
     return 0
 
 stack = [] # Bracket nest stack
+jump = [None]*len(code)
 ip = 0 # Instruction pointer
+
+# totally not taken from https://stackoverflow.com/a/3041005
+for i,o in enumerate(code):
+    if o=='[':
+        stack.append(i)
+    elif o==']':
+        jump[i] = stack.pop()
+        jump[jump[i]] = i
 
 while ip < len(code):
     match code[ip]:
@@ -53,16 +63,11 @@ while ip < len(code):
             cells[dp] = ord(input("Input: ")[0])
         case "[":
             if not cells[dp]:
-                while code[ip] != "]":
-                    ip+=1
-                continue
-            else:
-                stack.append(ip)
+                ip = jump[ip]
         case "]":
             if cells[dp]:
-                ip = stack.pop()
+                ip = jump[ip]
                 continue
-            stack.pop()
 
         case "#":
             segfaulthandler(-1, stdout, 9)
