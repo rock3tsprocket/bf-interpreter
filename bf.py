@@ -63,7 +63,11 @@ try:
             case ".":
                 print(chr(cells[dp]), end="")
             case ",":
-                cells[dp] = ord(input("Input: ")[0])
+                theinput = input("\nInput: ")
+                if theinput != "":
+                    cells[dp] = ord(theinput[0])
+                else:
+                    cells[dp] = 0
             case "[":
                 if not cells[dp]:
                     ip = jump[ip]
