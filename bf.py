@@ -45,9 +45,9 @@ try:
     while ip < len(code):
         match code[ip]:
             case "+":
-                cells[dp] = (cells[dp] + 1) % 255
+                cells[dp] = (cells[dp] + 1) % 256
             case "-":
-                cells[dp] = (cells[dp] - 1) % 255
+                cells[dp] = (cells[dp] - 1) % 256
             case ">":
                 dp+=1
                 if dp < -1 or dp > 29999:
